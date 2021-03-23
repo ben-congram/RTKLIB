@@ -644,7 +644,7 @@ void MainForm::Timer2Timer()
     unsigned char *msg=0;
     int len;
     
-    lock(&strsvr.lock);
+    rtk_lock(&strsvr.lock);
     
     len=strsvr.npb;
     if (len>0&&(msg=(unsigned char *)malloc(len))) {

@@ -510,7 +510,7 @@ static void *strsvrthread(void *arg)
             /* write data to log stream */
             strwrite(svr->strlog,svr->buff,n);
             
-            lock(&svr->lock);
+            rtk_lock(&svr->lock);
             for (i=0;i<n&&svr->npb<svr->buffsize;i++) {
                 svr->pbuf[svr->npb++]=svr->buff[i];
             }
@@ -778,7 +778,7 @@ extern int strsvrpeek(strsvr_t *svr, uint8_t *buff, int nmax)
     
     if (!svr->state) return 0;
     
-    lock(&svr->lock);
+    rtk_lock(&svr->lock);
     n=svr->npb<nmax?svr->npb:nmax;
     if (n>0) {
         memcpy(buff,svr->pbuf,n);

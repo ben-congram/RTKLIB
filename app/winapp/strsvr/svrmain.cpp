@@ -568,7 +568,7 @@ void __fastcall TMainForm::Timer2Timer(TObject *Sender)
 	int i,len,inb,inr,outb,outr;
 	
 	if (StrMonDialog->StrFmt) {
-		lock(&strsvr.lock);
+		rtk_lock(&strsvr.lock);
 		len=strsvr.npb;
 		if (len>0&&(msg=(char *)malloc(len))) {
 			memcpy(msg,strsvr.pbuf,len);
